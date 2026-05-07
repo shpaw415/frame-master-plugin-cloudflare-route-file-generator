@@ -13,7 +13,12 @@ export type CloudflareRouteFile = {
 };
 
 export type CloudflareRouteFileGeneratorOptions = {
-	routeOptions: CloudflareRouteFile;
+	routeOptions:
+		| ((
+				config: Bun.BuildConfig,
+				output: Bun.BuildOutput,
+		  ) => CloudflareRouteFile)
+		| CloudflareRouteFile;
 };
 
 /**
@@ -37,7 +42,15 @@ export default function cloudflareroutefilegenerator(
 			}),
 			async afterBuild(conf, res) {
 				const file = new File(
-					[JSON.stringify(routeOptions, null, 2)],
+					[
+						JSON.stringify(
+							typeof routeOptions === "function"
+								? routeOptions(conf, res)
+								: routeOptions,
+							null,
+							2,
+						),
+					],
 					"_routes.json",
 					{
 						type: "application/json",

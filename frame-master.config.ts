@@ -7,11 +7,11 @@ export default {
 	},
 	plugins: [
 		routePlugin({
-			routeOptions: {
+			routeOptions: () => ({
 				version: 1,
 				include: ["/api/*"],
 				exclude: ["/*"],
-			},
+			}),
 		}),
 	],
 } satisfies FrameMasterConfig;
