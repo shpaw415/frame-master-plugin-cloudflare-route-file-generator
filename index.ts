@@ -37,9 +37,6 @@ export default function cloudflareroutefilegenerator(
 		version: packageVersion,
 
 		build: {
-			buildConfig: () => ({
-				entrypoints: ["test/index.html"],
-			}),
 			async afterBuild(conf, res) {
 				const file = new File(
 					[
