@@ -1,5 +1,5 @@
 {
-	"name": "cloudflare-route-file-generator",
+	"name": "frame-master-plugin-cloudflare-route-file-generator",
 	"version": "0.1.0",
 	"type": "module",
 	"main": "index.ts",
